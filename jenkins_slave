@@ -5,7 +5,7 @@ pipeline {
         stage('Example') {
             steps {
                 sh ("python myscript.py ${params.NAME} --age ${params.Ages}")
-                sh ("week7.txt")
+                sh ("readFile(file: week7.txt)")
             }
         }
     }
