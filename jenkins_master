@@ -13,13 +13,7 @@ pipeline {
             steps {
             script {
                     def file = readFile "./data.txt"
-                    def jsonString = readJSON file: "./data.json"
-                    def jsonObj = readJSON text: jsonString
 
-                    assert jsonObj['pet'] == 'katone'  
-                    sh "echo ${jsonObj.pet}"  
-                    sh "echo ${jsonObj.petage}"   
-                    
                     def lines = file.readLines()[0].split(' ')
                     env.name = lines[0]
                     env.ages = lines[1]
