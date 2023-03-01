@@ -13,7 +13,7 @@ pipeline {
             steps {
             script {
                     def file = readFile "./data.txt"
-
+                    def test = readFile "./data.json"    
                     def lines = file.readLines()[0].split(' ')
                     env.name = lines[0]
                     env.ages = lines[1]
