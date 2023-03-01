@@ -14,15 +14,15 @@ pipeline {
             script {
                     def file = readFile "./data.txt"
                     def test = readFile "./data.json"
-                    def lazyMap = new JsonSlurper().parseText(test)
-                    def lines = file.readLines()[0].split(' ')
-                    env.pet = lazyMap
+                    def jsonObj = readJSON text: test
+
+                    assert jsonObj["pet"] == 'katone'  // this is a comparison.  It returns true
                     env.name = lines[0]
                     env.ages = lines[1]
                 }
                 echo 'Start Trigger to send name and age to slave'
                 build job: 'slave', parameters: [string(name: 'NAME', value: "$name"), string(name: 'Ages', value: "$ages")]
-                sh "echo $pet"
+                sh "echo $jsonObj.pet"
             }
         }
     }
