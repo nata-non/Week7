@@ -14,6 +14,9 @@ pipeline {
             script {
                     def file = readFile "./data.txt"
                     def test = readFile "./data.json"
+                    def props = readJSON file: './data.json'
+                    assert props['pet'] == 'One'
+                    assert props.pet == 'One'
                     def lines = file.readLines()[0].split(' ')
                     env.pet = test[0]["pet"]
                     env.name = lines[0]
