@@ -9,7 +9,7 @@ pipeline {
                     def lines = file.readLines()
                 }
                 sh ("python myscript.py ${params.NAME} --age ${params.Ages}")
-                sh ("echo lines")
+                sh ("echo ${lines}")
             }
         }
     }
