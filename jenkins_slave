@@ -1,11 +1,15 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Example') {
             steps {
+                script {
+                    def file = readFile "./week7.txt"
+                    def lines = file.readLines()
+                }
                 sh ("python myscript.py ${params.NAME} --age ${params.Ages}")
-                sh ("cat week7.txt")
+                sh ("echo lines")
             }
         }
     }
