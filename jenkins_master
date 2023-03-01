@@ -14,11 +14,9 @@ pipeline {
             script {
                     def file = readFile "./data.txt"
                     def test = readFile "./data.json"
-                    def props = readJSON file: './data.json'
-                    assert props['pet'] == 'One'
-                    assert props.pet == 'One'
+                    def lazyMap = new JsonSlurper().parseText(test)
                     def lines = file.readLines()[0].split(' ')
-                    env.pet = test[0]["pet"]
+                    env.pet = lazyMap
                     env.name = lines[0]
                     env.ages = lines[1]
                 }
