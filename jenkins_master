@@ -11,8 +11,13 @@ pipeline {
 
         stage('Tigger the Slave Jobs') {
             steps {
+            script {
+                    def file = readFile "./week7.txt"
+                    def lines = file.readLines()
+                    env.lines = lines
+                }
                 echo 'Start Trigger to send name and age to slave'
-                build job: 'slave', parameters: [string(name: 'NAME', value: 'big'), string(name: 'Ages', value: '21')]
+                build job: 'slave', parameters: [string(name: 'NAME', value: env.lines[0]), string(name: 'Ages', value: env.lines[1])]
             }
         }
     }
