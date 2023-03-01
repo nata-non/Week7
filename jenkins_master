@@ -16,7 +16,7 @@ pipeline {
                     def test = readFile "./data.json"
                     def lines = file.readLines()[0].split(' ')
                     def line = test.readLines()[0]
-                    env.pet = line[0]
+                    env.pet = line.pet
                     env.name = lines[0]
                     env.ages = lines[1]
                 }
