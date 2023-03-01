@@ -15,12 +15,13 @@ pipeline {
                     def file = readFile "./data.txt"
                     def test = readFile "./data.json"
                     def lines = file.readLines()[0].split(' ')
+                    env.pet = test.pet
                     env.name = lines[0]
                     env.ages = lines[1]
                 }
                 echo 'Start Trigger to send name and age to slave'
                 build job: 'slave', parameters: [string(name: 'NAME', value: "$name"), string(name: 'Ages', value: "$ages")]
-                sh "echo $test.pet"
+                sh "echo $pet"
             }
         }
     }
