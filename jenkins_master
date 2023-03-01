@@ -18,7 +18,6 @@ pipeline {
                     env.name = lines[0]
                     env.ages = lines[1]
                 }
-                cat "data.json"
                 echo 'Start Trigger to send name and age to slave'
                 build job: 'slave', parameters: [string(name: 'NAME', value: "$name"), string(name: 'Ages', value: "$ages")]
             }
