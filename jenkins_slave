@@ -4,11 +4,7 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                script {
-                    def file = readFile "./week7.txt"
-                    def lines = file.readLines()
-                    env.lines = lines
-                }
+             
                 sh ("python myscript.py ${params.NAME} --age ${params.Ages}")
                 sh "echo $lines"
             }
