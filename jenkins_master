@@ -14,15 +14,14 @@ pipeline {
             script {
                     def file = readFile "./data.txt"
                     def props = readJSON file: './data.json'
-                    assert props['name'] == 'One'
-                    assert props.name == 'One'
+                    assert props['pet'] == 'One'
+                    assert props.pet == 'One'
                     
                     def lines = file.readLines()[0].split(' ')
                     env.name = lines[0]
                     env.ages = lines[1]
                 }
                 echo 'Start Trigger to send name and age to slave'
-                echo "$props"
                 build job: 'slave', parameters: [string(name: 'NAME', value: "$name"), string(name: 'Ages', value: "$ages")]
             }
         }
