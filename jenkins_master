@@ -12,7 +12,7 @@ pipeline {
         stage('Tigger the Slave Jobs') {
             steps {
             script {
-                    def file = readFile "./week7.txt"
+                    def file = readFile "./nameages.txt"
                     def lines = file.readLines()
                     env.lines = lines
                 }
