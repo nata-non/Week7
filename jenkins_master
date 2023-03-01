@@ -14,11 +14,11 @@ pipeline {
             script {
                     def file = readFile "./nameages.txt"
                     def lines = file.readLines()
-                    env.lines = lines
-                    lines.split(" ")
+                    env.name = lines[0]
+                    env.ages = lines[1]
                 }
                 echo 'Start Trigger to send name and age to slave'
-                build job: 'slave', parameters: [string(name: 'NAME', value: "$lines[0]"), string(name: 'Ages', value: "$lines[1]")]
+                build job: 'slave', parameters: [string(name: 'NAME', value: "$name"), string(name: 'Ages', value: "$ages")]
             }
         }
     }
