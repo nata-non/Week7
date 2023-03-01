@@ -15,8 +15,8 @@ pipeline {
                     def file = readFile "./data.txt"
                     def test = readFile "./data.json"
                     def lines = file.readLines()[0].split(' ')
-                    def lines = test.readLines()[0]
-                    def jsonObj = readJSON text: lines
+                    def line = test.readLines()[0]
+                    def jsonObj = readJSON text: line
                     assert jsonObj["pet"] == 'katone'  // this is a comparison.  It returns true
                     env.name = lines[0]
                     env.ages = lines[1]
